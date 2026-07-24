@@ -1,6 +1,5 @@
 package com.hatchworks.challenge.domain;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 public class Certification {
@@ -8,16 +7,16 @@ public class Certification {
     private UUID id;
     private String name;
     private String issuingOrganization;
-    private LocalDate issueDate;
-    private LocalDate expirationDate;
+    private String issueDate;
+    private String expirationDate;
     private String credentialId;
     private String credentialUrl;
 
     public Certification() {
     }
 
-    public Certification(UUID id, String name, String issuingOrganization, LocalDate issueDate,
-            LocalDate expirationDate, String credentialId, String credentialUrl) {
+    public Certification(UUID id, String name, String issuingOrganization, String issueDate,
+            String expirationDate, String credentialId, String credentialUrl) {
         this.id = id;
         this.name = name;
         this.issuingOrganization = issuingOrganization;
@@ -51,19 +50,19 @@ public class Certification {
         this.issuingOrganization = issuingOrganization;
     }
 
-    public LocalDate getIssueDate() {
+    public String getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+    public void setIssueDate(String issueDate) {
         this.issueDate = issueDate;
     }
 
-    public LocalDate getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 

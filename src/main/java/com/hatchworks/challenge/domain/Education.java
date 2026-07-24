@@ -1,20 +1,19 @@
 package com.hatchworks.challenge.domain;
 
-import java.time.LocalDate;
 
 public class Education {
 
     private String institutionName;
     private String degree;
     private String fieldOfStudy;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
 
     public Education() {
     }
 
-    public Education(String institutionName, String degree, String fieldOfStudy, LocalDate startDate,
-            LocalDate endDate) {
+    public Education(String institutionName, String degree, String fieldOfStudy, String startDate,
+            String endDate) {
         this.institutionName = institutionName;
         this.degree = degree;
         this.fieldOfStudy = fieldOfStudy;
@@ -46,19 +45,19 @@ public class Education {
         this.fieldOfStudy = fieldOfStudy;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
