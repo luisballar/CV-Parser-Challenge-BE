@@ -12,7 +12,7 @@ import com.hatchworks.challenge.exception.UnsupportedFileTypeException;
 @Service
 public class CvDataExtractorService {
 
-     private final GeminiClient geminiClient;
+    private final GeminiClient geminiClient;
     private final ObjectMapper objectMapper;
 
     public CvDataExtractorService(

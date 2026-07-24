@@ -9,16 +9,16 @@ public class WorkExperience {
     private String jobTitle;
     private String companyName;
     private String location;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
     private Boolean isCurrent;
     private String description;
 
     public WorkExperience() {
     }
 
-    public WorkExperience(UUID id, String jobTitle, String companyName, String location, LocalDate startDate,
-            LocalDate endDate, Boolean isCurrent, String description) {
+    public WorkExperience(UUID id, String jobTitle, String companyName, String location, String startDate,
+            String endDate, Boolean isCurrent, String description) {
         this.id = id;
         this.jobTitle = jobTitle;
         this.companyName = companyName;
@@ -61,19 +61,19 @@ public class WorkExperience {
         this.location = location;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

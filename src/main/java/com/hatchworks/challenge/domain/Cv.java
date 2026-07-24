@@ -1,6 +1,5 @@
 package com.hatchworks.challenge.domain;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +11,7 @@ public class Cv {
     private String rawText;
     private String language; // "ES" o "EN"
     private String extractionStatus; // "SUCCESS", "PARTIAL", "FAILED"
-    private LocalDateTime createdAt;
+    private String createdAt;
 
     private PersonalInfo personalInfo;
     private List<WorkExperience> workExperiences;
@@ -24,7 +23,7 @@ public class Cv {
     }
 
     public Cv(UUID id, String originalFileName, String fileType, String rawText, String language,
-            String extractionStatus, LocalDateTime createdAt, PersonalInfo personalInfo,
+            String extractionStatus, String createdAt, PersonalInfo personalInfo,
             List<WorkExperience> workExperiences, List<Education> educations, List<Skill> skills,
             List<Certification> certifications) {
         this.id = id;
@@ -89,11 +88,11 @@ public class Cv {
         this.extractionStatus = extractionStatus;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

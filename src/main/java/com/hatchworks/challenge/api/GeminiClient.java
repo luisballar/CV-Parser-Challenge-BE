@@ -10,78 +10,110 @@ import com.google.genai.types.GenerateContentResponse;
 @Component
 public class GeminiClient {
 
-    private final Client client;
+        private final Client client;
 
-    public GeminiClient(
-            @Value("${gemini.api.key}") String apiKey) {
+        public GeminiClient(
+                        @Value("${gemini.api.key}") String apiKey) {
 
-        this.client = Client.builder()
-                .apiKey(apiKey)
-                .build();
-    }
+                this.client = Client.builder()
+                                .apiKey(apiKey)
+                                .build();
+        }
 
-    public String extractResumeData(String cvText) {
+        public String extractResumeData(String cvText) {
 
-        String prompt = """
-                You are a CV parser AI.
+                String prompt = """
+                                You are a CV parser AI.
 
-                Analyze the following resume text and extract structured information.
+                                Analyze the following resume text and extract structured information.
 
-                Return ONLY valid JSON.
-                Do not add explanations.
-                Do not use markdown.
+                                Return ONLY valid JSON.
+                                Do not add explanations.
+                                Do not use markdown.
 
-                Required structure:
+                                Required JSON structure:
 
-                {
-                  "personalInfo": {
-                    "fullName": null,
-                    "email": null,
-                    "phone": null,
-                    "location": null,
-                    "linkedinUrl": null,
-                    "portfolioUrl": null,
-                    "summary": null
-                  },
+                                {
+                                  "personalInfo": {
+                                    "fullName": null,
+                                    "email": null,
+                                    "phone": null,
+                                    "location": null,
+                                    "linkedinUrl": null,
+                                    "portfolioUrl": null,
+                                    "summary": null
+                                  },
 
-                  "workExperiences": [],
+                                  "workExperiences": [
+                                    {
+                                      "company": null,
+                                      "position": null,
+                                      "startDate": null,
+                                      "endDate": null,
+                                      "description": null
+                                    }
+                                  ],
 
-                  "educations": [],
+                                  "educations": [
+                                    {
+                                      "institution": null,
+                                      "degree": null,
+                                      "fieldOfStudy": null,
+                                      "startDate": null,
+                                      "endDate": null
+                                    }
+                                  ],
 
-                  "skills": [],
+                                  "skills": [
+                                    {
+                                      "name": null,
+                                      "category": null,
+                                      "proficiencyLevel": null
+                                    }
+                                  ],
 
-                  "certifications": [],
+                                  "certifications": [
+                                    {
+                                      "name": null,
+                                      "issuer": null,
+                                      "issueDate": null,
+                                      "expirationDate": null
+                                    }
+                                  ],
 
-                  "language": "EN or ES"
-                }
+                                  "language": "EN or ES"
+                                }
 
+                                Rules:
+                                - Return ONLY valid JSON.
+                                - Do not wrap the JSON in markdown.
+                                - If information is missing, use null.
+                                - Do not invent information.
+                                - Use empty arrays when there are no items.
+                                - Dates must be returned in ISO format (yyyy-MM-dd) when possible. Otherwise return null.
+                                - Detect if the document is a CV.
+                                - If it is not a CV, return only:
 
-                Rules:
-                - If information is missing use null.
-                - Do not invent information.
-                - Detect if this document is a CV.
-                - If it is not a CV, return:
+                                  {
+                                    "error": "NOT_A_CV"
+                                  }
 
-                {
-                  "error": "NOT_A_CV"
-                }
+                                Resume text:
 
+                                %s
+                                """
+                                .formatted(cvText);
 
-                Resume text:
+                GenerateContentConfig config = GenerateContentConfig.builder()
+                                .temperature((float) 0.1)
+                                .responseMimeType("application/json")
+                                .build();
 
-                %s
-                """.formatted(cvText);
+                GenerateContentResponse response = client.models.generateContent(
+                                "gemini-3.6-flash",
+                                prompt,
+                                config);
 
-        GenerateContentConfig config = GenerateContentConfig.builder()
-                .temperature((float) 0.1)
-                .responseMimeType("application/json")
-                .build();
-
-        GenerateContentResponse response = client.models.generateContent(
-                "gemini-2.5-flash",
-                prompt,
-                config);
-
-        return response.text();
-    }
+                return response.text();
+        }
 }
