@@ -11,7 +11,7 @@ import com.hatchworks.challenge.domain.Education;
 import com.hatchworks.challenge.domain.Skill;
 import com.hatchworks.challenge.domain.WorkExperience;
 import com.hatchworks.challenge.dto.response.CertificationDto;
-import com.hatchworks.challenge.dto.response.CvUploadResponse;
+import com.hatchworks.challenge.dto.response.CvDataDto;
 import com.hatchworks.challenge.dto.response.EducationDto;
 import com.hatchworks.challenge.dto.response.SkillDto;
 import com.hatchworks.challenge.dto.response.WorkExperienceDto;
@@ -34,9 +34,9 @@ public class CvMapper {
         this.certificationMapper = certificationMapper;
     }
 
-    public CvUploadResponse toDto(Cv cv) {
+    public CvDataDto toDto(Cv cv) {
 
-        return new CvUploadResponse(
+        return new CvDataDto(
                 cv.getOriginalFileName(),
                 cv.getLanguage(),
                 cv.getPersonalInfo() != null ? personalInfoMapper.toDto(cv.getPersonalInfo()) : null,
