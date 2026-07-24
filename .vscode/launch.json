@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ChallengeApplication<challenge-CV-Parser-Challenge-BE>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.hatchworks.challenge.ChallengeApplication",
+            "projectName": "challenge-CV-Parser-Challenge-BE",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
