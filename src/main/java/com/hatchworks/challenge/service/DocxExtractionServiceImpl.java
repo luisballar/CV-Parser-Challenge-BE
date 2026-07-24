@@ -11,6 +11,7 @@ import com.hatchworks.challenge.exception.FileParsingException;
 
 @Service
 public class DocxExtractionServiceImpl implements FileExtractionService {
+    
     @Override
     public String extractText(MultipartFile file) {
         try (XWPFDocument document = new XWPFDocument(file.getInputStream());
