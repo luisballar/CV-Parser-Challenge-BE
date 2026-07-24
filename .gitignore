@@ -23,6 +23,10 @@
 hs_err_pid*
 replay_pid*
 
+# Keep Gradle wrapper
+!gradle/wrapper/
+!gradle/wrapper/gradle-wrapper.jar
+
 # Gradle
 .gradle/
 build/
@@ -44,3 +48,19 @@ bin/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Environment variables
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Test reports
+reports/
+
+# Gradle generated files
+.gradle-cache/
