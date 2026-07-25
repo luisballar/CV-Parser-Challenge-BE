@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.hatchworks.challenge.exception.FileParsingException;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class DocxExtractionServiceImpl implements FileExtractionService {
@@ -20,12 +20,12 @@ public class DocxExtractionServiceImpl implements FileExtractionService {
             String text = extractor.getText();
 
             if (text == null || text.trim().isEmpty()) {
-                throw new FileParsingException("El documento DOCX no contiene texto extraíble.");
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT, "El archivo DOCX está vacío o no contiene texto legible.");
             }
 
             return text;
         } catch (IOException e) {
-            throw new FileParsingException("No se pudo leer el contenido del DOCX.", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al procesar el archivo DOCX.", e);
         }
     }
 

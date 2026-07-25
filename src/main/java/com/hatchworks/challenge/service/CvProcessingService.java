@@ -2,13 +2,14 @@ package com.hatchworks.challenge.service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.hatchworks.challenge.domain.Cv;
 import com.hatchworks.challenge.dto.response.CvDataDto;
 import com.hatchworks.challenge.dto.response.CvUploadResponse;
-import com.hatchworks.challenge.exception.UnsupportedFileTypeException;
 import com.hatchworks.challenge.mapper.CvMapper;
 
 @Service
@@ -33,8 +34,7 @@ public class CvProcessingService {
         String fileType = detectFileType(file);
 
         if (fileType == null) {
-            throw new UnsupportedFileTypeException(
-                    "Formato no soportado. Solo PDF y DOCX.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Formato no soportado. Solo PDF y DOCX.");
         }
 
         String rawText = extractText(file, fileType);
@@ -61,8 +61,7 @@ public class CvProcessingService {
                 .equals(contentType)) {
             return "DOCX";
         }
-
-        return null;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Formato no soportado. Solo PDF y DOCX.");
     }
 
     private String extractText(MultipartFile file, String fileType) {
@@ -71,6 +70,6 @@ public class CvProcessingService {
                 return extractionService.extractText(file);
             }
         }
-        throw new UnsupportedFileTypeException("No hay un extractor disponible para el tipo: " + fileType);
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"No hay un extractor disponible para el tipo: " + fileType);
     }
 }

@@ -1,6 +1,5 @@
 package com.hatchworks.challenge.domain;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 public class WorkExperience {
