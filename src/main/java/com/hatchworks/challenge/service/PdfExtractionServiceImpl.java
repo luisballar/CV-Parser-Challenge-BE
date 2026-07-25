@@ -26,7 +26,7 @@ public class PdfExtractionServiceImpl implements FileExtractionService {
 
             return text;
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al procesar el archivo PDF.", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al procesar el archivo PDF.", e);
         }
     }
 

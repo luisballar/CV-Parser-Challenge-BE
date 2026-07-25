@@ -20,7 +20,7 @@ public class DocxExtractionServiceImpl implements FileExtractionService {
             String text = extractor.getText();
 
             if (text == null || text.trim().isEmpty()) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El archivo DOCX está vacío o no contiene texto legible.");
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT, "El archivo DOCX está vacío o no contiene texto legible.");
             }
 
             return text;

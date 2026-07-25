@@ -34,7 +34,7 @@ public class CvProcessingService {
         String fileType = detectFileType(file);
 
         if (fileType == null) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,"Formato no soportado. Solo PDF y DOCX.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Formato no soportado. Solo PDF y DOCX.");
         }
 
         String rawText = extractText(file, fileType);
@@ -61,7 +61,7 @@ public class CvProcessingService {
                 .equals(contentType)) {
             return "DOCX";
         }
-        throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,"Formato no soportado. Solo PDF y DOCX.");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Formato no soportado. Solo PDF y DOCX.");
     }
 
     private String extractText(MultipartFile file, String fileType) {
@@ -70,6 +70,6 @@ public class CvProcessingService {
                 return extractionService.extractText(file);
             }
         }
-        throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,"No hay un extractor disponible para el tipo: " + fileType);
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"No hay un extractor disponible para el tipo: " + fileType);
     }
 }
