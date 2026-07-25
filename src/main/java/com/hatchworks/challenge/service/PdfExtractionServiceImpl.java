@@ -5,15 +5,13 @@ import java.io.IOException;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-
-import com.hatchworks.challenge.exception.FileParsingException;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class PdfExtractionServiceImpl implements FileExtractionService{
-
+public class PdfExtractionServiceImpl implements FileExtractionService {
 
     @Override
     public String extractText(MultipartFile file) {
@@ -22,12 +20,13 @@ public class PdfExtractionServiceImpl implements FileExtractionService{
             String text = stripper.getText(document);
 
             if (text == null || text.trim().isEmpty()) {
-                throw new FileParsingException("El PDF no contiene texto extraíble (¿es un escaneo/imagen?).");
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
+                        "El PDF está vacío o no contiene texto legible (¿es un escaneo/imagen?).");
             }
 
             return text;
         } catch (IOException e) {
-            throw new FileParsingException("No se pudo leer el contenido del PDF.", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al procesar el archivo PDF.", e);
         }
     }
 
