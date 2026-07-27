@@ -20,12 +20,12 @@ public class DocxExtractionServiceImpl implements FileExtractionService {
             String text = extractor.getText();
 
             if (text == null || text.trim().isEmpty()) {
-                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT, "El archivo DOCX está vacío o no contiene texto legible.");
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT, "The DOCX file is empty or does not contain readable text.");
             }
 
             return text;
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al procesar el archivo DOCX.", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error processing the DOCX file.", e);
         }
     }
 

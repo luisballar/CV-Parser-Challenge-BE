@@ -1,6 +1,5 @@
 package com.hatchworks.challenge.controller;
 
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +28,7 @@ public class CvController {
     public ResponseEntity<CvUploadResponse> uploadCv(@RequestParam("file") MultipartFile file) {
 
         if (file == null || file.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Debe seleccionar un archivo.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You must provide a non-empty file.");
         }
 
         CvUploadResponse response = cvProcessingService.processCv(file);
