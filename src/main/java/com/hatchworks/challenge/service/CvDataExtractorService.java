@@ -36,13 +36,12 @@ public class CvDataExtractorService {
 
         JsonNode rootNode = parseJson(llmJsonResponse);
 
-        // Caso: Gemini detectó que el documento no es un CV
         if (rootNode.has("error") && "NOT_A_CV".equals(rootNode.path("error").asText())) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
                     "The uploaded document does not appear to be a CV/resume.");
         }
 
-        // JSON -> objeto Java (Cv)
+        // JSON -> Java Object (Cv)
         try {
             return objectMapper.treeToValue(rootNode, Cv.class);
         } catch (Exception e) {
