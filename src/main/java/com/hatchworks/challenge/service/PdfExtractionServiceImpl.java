@@ -21,12 +21,12 @@ public class PdfExtractionServiceImpl implements FileExtractionService {
 
             if (text == null || text.trim().isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
-                        "El PDF está vacío o no contiene texto legible (¿es un escaneo/imagen?).");
+                        "The PDF is empty or does not contain readable text (is it a scan/image?).");
             }
 
             return text;
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al procesar el archivo PDF.", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error processing the PDF file.", e);
         }
     }
 

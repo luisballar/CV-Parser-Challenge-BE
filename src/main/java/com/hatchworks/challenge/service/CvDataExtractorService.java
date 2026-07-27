@@ -31,7 +31,7 @@ public class CvDataExtractorService {
             llmJsonResponse = geminiClient.extractResumeData(rawText);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
-                    "No fue posible comunicarse con el servicio de extracción de datos.", e);
+                    "It was not possible to communicate with the data extraction service", e);
         }
 
         JsonNode rootNode = parseJson(llmJsonResponse);
@@ -39,7 +39,7 @@ public class CvDataExtractorService {
         // Caso: Gemini detectó que el documento no es un CV
         if (rootNode.has("error") && "NOT_A_CV".equals(rootNode.path("error").asText())) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
-                    "El documento subido no parece ser un CV/currículum.");
+                    "The uploaded document does not appear to be a CV/resume.");
         }
 
         // JSON -> objeto Java (Cv)
@@ -47,7 +47,7 @@ public class CvDataExtractorService {
             return objectMapper.treeToValue(rootNode, Cv.class);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "No se pudo interpretar la respuesta del API.", e);
+                    "It was not possible to interpret the API response.", e);
         }
     }
 
@@ -56,7 +56,7 @@ public class CvDataExtractorService {
             return objectMapper.readTree(rawJson);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "La respuesta del API no es un JSON válido.", e);
+                    "The API response is not a valid JSON.", e);
         }
     }
 }

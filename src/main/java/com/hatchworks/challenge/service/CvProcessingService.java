@@ -34,19 +34,17 @@ public class CvProcessingService {
         String fileType = detectFileType(file);
 
         if (fileType == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Formato no soportado. Solo PDF y DOCX.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Format not supported. Only PDF and DOCX are allowed.");
         }
 
         String rawText = extractText(file, fileType);
 
-        // Texto -> Gemini -> Cv (domain)
+        // Text -> Gemini -> Cv (domain)
         Cv cv = cvDataExtractorService.extractStructuredData(rawText);
         cv.setOriginalFileName(file.getOriginalFilename());
 
-        // Cv (domain) -> CvDataDto (via CvMapper)
         CvDataDto data = cvMapper.toDto(cv);
 
-        // CvDataDto se envuelve dentro de CvUploadResponse
         return new CvUploadResponse(true, data);
     }
 
@@ -61,7 +59,7 @@ public class CvProcessingService {
                 .equals(contentType)) {
             return "DOCX";
         }
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Formato no soportado. Solo PDF y DOCX.");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Format not supported. Only PDF and DOCX are allowed.");
     }
 
     private String extractText(MultipartFile file, String fileType) {
@@ -70,6 +68,6 @@ public class CvProcessingService {
                 return extractionService.extractText(file);
             }
         }
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"No hay un extractor disponible para el tipo: " + fileType);
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"No extractor available for the type: " + fileType);
     }
 }

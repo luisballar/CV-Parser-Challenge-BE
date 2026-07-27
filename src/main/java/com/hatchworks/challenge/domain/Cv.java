@@ -7,10 +7,10 @@ public class Cv {
 
     private UUID id;
     private String originalFileName;
-    private String fileType; // "PDF" o "DOCX"
+    private String fileType; 
     private String rawText;
-    private String language; // "ES" o "EN"
-    private String extractionStatus; // "SUCCESS", "PARTIAL", "FAILED"
+    private String language; 
+    private String extractionStatus; 
     private String createdAt;
 
     private PersonalInfo personalInfo;

@@ -6,8 +6,8 @@ public class Skill {
 
     private UUID id;
     private String name;
-    private String category; // "TECHNICAL", "SOFT", "LANGUAGE", "TOOL"
-    private String proficiencyLevel; // "BASIC", "INTERMEDIATE", "ADVANCED"
+    private String category; 
+    private String proficiencyLevel; 
 
     public Skill() {
     }
