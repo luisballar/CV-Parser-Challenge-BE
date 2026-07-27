@@ -1,7 +1,9 @@
 package com.hatchworks.challenge.controller;
 
+import org.checkerframework.checker.units.qual.C;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +15,7 @@ import com.hatchworks.challenge.dto.response.CvUploadResponse;
 import com.hatchworks.challenge.service.CvProcessingService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200") 
 @RequestMapping("/api/cv")
 public class CvController {
 
