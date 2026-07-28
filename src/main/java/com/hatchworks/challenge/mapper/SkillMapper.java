@@ -12,7 +12,7 @@ public class SkillMapper {
 
         dto.setName(skill.getName());
         dto.setCategory(skill.getCategory());
-        dto.setProficiencyLevel(skill.getProficiencyLevel() != null ? skill.getProficiencyLevel().toString() : null);
+        dto.setProficiencyLevel(skill.getProficiencyLevel());
 
         return dto;
     }

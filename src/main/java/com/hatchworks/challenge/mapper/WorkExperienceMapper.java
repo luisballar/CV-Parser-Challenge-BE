@@ -13,11 +13,11 @@ public class WorkExperienceMapper {
         dto.setJobTitle(workExperience.getJobTitle());
         dto.setCompanyName(workExperience.getCompanyName());
         dto.setLocation(workExperience.getLocation());
-        dto.setStartDate(workExperience.getStartDate() != null ? workExperience.getStartDate().toString() : null);
-        dto.setEndDate(workExperience.getEndDate() != null ? workExperience.getEndDate().toString() : null);
+        dto.setStartDate(workExperience.getStartDate());
+        dto.setEndDate(workExperience.getEndDate());
         dto.setIsCurrent(workExperience.getIsCurrent());
         dto.setDescription(workExperience.getDescription());
-        
+
         return dto;
     }
 }

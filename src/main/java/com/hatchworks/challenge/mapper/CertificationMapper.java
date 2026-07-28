@@ -13,8 +13,8 @@ public class CertificationMapper {
         
         dto.setName(certification.getName());
         dto.setIssuingOrganization(certification.getIssuingOrganization());
-        dto.setIssueDate(certification.getIssueDate() != null ? certification.getIssueDate().toString() : null);
-        dto.setExpirationDate(certification.getExpirationDate() != null ? certification.getExpirationDate().toString() : null);
+        dto.setIssueDate(certification.getIssueDate());
+        dto.setExpirationDate(certification.getExpirationDate());
         dto.setCredentialId(certification.getCredentialId());
         dto.setCredentialUrl(certification.getCredentialUrl());
 

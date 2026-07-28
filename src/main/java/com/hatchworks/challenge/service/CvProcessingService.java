@@ -29,6 +29,7 @@ public class CvProcessingService {
         this.cvMapper = cvMapper;
     }
 
+     
     public CvUploadResponse processCv(MultipartFile file) {
 
         String fileType = detectFileType(file);
