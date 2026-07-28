@@ -14,7 +14,7 @@ import com.hatchworks.challenge.dto.response.CvUploadResponse;
 import com.hatchworks.challenge.service.CvProcessingService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200", "https://cv-parser-challenge-40m4v9rev-luisballars-projects.vercel.app/upload"}) 
+@CrossOrigin(origins = "${cors.allowed-origins}") 
 @RequestMapping("/api/cv")
 public class CvController {
 
