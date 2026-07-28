@@ -11,13 +11,12 @@ public class PersonalInfoMapper {
     public PersonalInfoDto toDto(PersonalInfo personalInfo) {
         PersonalInfoDto dto = new PersonalInfoDto();
 
-    
         dto.setFullName(personalInfo.getFullName());
         dto.setEmail(personalInfo.getEmail());
         dto.setPhone(personalInfo.getPhone());
-        dto.setLocation(personalInfo.getLocation() != null ? personalInfo.getLocation().toString() : null);
-        dto.setLinkedinUrl(personalInfo.getLinkedinUrl() != null ? personalInfo.getLinkedinUrl().toString() : null);
-        dto.setPortfolioUrl(personalInfo.getPortfolioUrl() != null ? personalInfo.getPortfolioUrl().toString() : null);
+        dto.setLocation(personalInfo.getLocation());
+        dto.setLinkedinUrl(personalInfo.getLinkedinUrl());
+        dto.setPortfolioUrl(personalInfo.getPortfolioUrl());
         dto.setSummary(personalInfo.getSummary());
 
         return dto;

@@ -14,8 +14,8 @@ public class EducationMapper {
         dto.setInstitutionName(education.getInstitutionName());
         dto.setDegree(education.getDegree());
         dto.setFieldOfStudy(education.getFieldOfStudy());
-        dto.setStartDate(education.getStartDate() != null ? education.getStartDate().toString() : null);
-        dto.setEndDate(education.getEndDate() != null ? education.getEndDate().toString() : null);
+        dto.setStartDate(education.getStartDate());
+        dto.setEndDate(education.getEndDate());
 
         return dto;
     }

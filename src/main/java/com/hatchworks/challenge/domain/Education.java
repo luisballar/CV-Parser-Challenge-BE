@@ -1,8 +1,10 @@
 package com.hatchworks.challenge.domain;
 
+import java.util.UUID;
 
 public class Education {
 
+    private UUID id;
     private String institutionName;
     private String degree;
     private String fieldOfStudy;
@@ -12,13 +14,22 @@ public class Education {
     public Education() {
     }
 
-    public Education(String institutionName, String degree, String fieldOfStudy, String startDate,
+    public Education(UUID id, String institutionName, String degree, String fieldOfStudy, String startDate,
             String endDate) {
+        this.id = id;
         this.institutionName = institutionName;
         this.degree = degree;
         this.fieldOfStudy = fieldOfStudy;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getInstitutionName() {
@@ -31,6 +42,10 @@ public class Education {
 
     public String getDegree() {
         return degree;
+    }
+
+    public void setUuid(UUID id) {
+        this.id = id;
     }
 
     public void setDegree(String degree) {

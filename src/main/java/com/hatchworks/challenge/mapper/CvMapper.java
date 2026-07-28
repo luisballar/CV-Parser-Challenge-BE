@@ -13,6 +13,7 @@ import com.hatchworks.challenge.domain.WorkExperience;
 import com.hatchworks.challenge.dto.response.CertificationDto;
 import com.hatchworks.challenge.dto.response.CvDataDto;
 import com.hatchworks.challenge.dto.response.EducationDto;
+import com.hatchworks.challenge.dto.response.PersonalInfoDto;
 import com.hatchworks.challenge.dto.response.SkillDto;
 import com.hatchworks.challenge.dto.response.WorkExperienceDto;
 
@@ -39,7 +40,7 @@ public class CvMapper {
         return new CvDataDto(
                 cv.getOriginalFileName(),
                 cv.getLanguage(),
-                cv.getPersonalInfo() != null ? personalInfoMapper.toDto(cv.getPersonalInfo()) : null,
+                cv.getPersonalInfo() != null ? personalInfoMapper.toDto(cv.getPersonalInfo()) : new PersonalInfoDto(),
                 mapWorkExperiences(cv.getWorkExperiences()),
                 mapEducations(cv.getEducations()),
                 mapSkills(cv.getSkills()),
