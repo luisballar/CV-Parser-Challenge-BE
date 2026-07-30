@@ -41,7 +41,8 @@ A Small web application that takes any uploaded CV/résumé (PDF or DOCX), extra
 ```properties
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 ```
- **Note:** Configure the API key environment variable before running the backend.
+
+> **Note:** Configure the `GEMINI_API_KEY` environment variable before running the backend. This value is read from the `application.properties` file.
 
 **Linux/macOS**
 
