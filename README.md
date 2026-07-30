@@ -62,7 +62,7 @@ gradlew.bat bootRun
 npm install
 ```
 
-#### Run locally in development mode using the local backend API: http://localhost:8080/api/cv/upload:
+#### Run locally in development mode using the local backend API:
 
 ```bash
 ng serve
