@@ -41,26 +41,47 @@ A Small web application that takes any uploaded CV/résumé (PDF or DOCX), extra
 ```properties
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 ```
- **Note:** Configure the API key environment variable before running the backend.
+
+**Note:** Set `GEMINI_API_KEY` as an environment variable before running the backend. The key is intentionally excluded from the repository for security reasons. Spring Boot reads it automatically via `application.properties`.
 
 **Linux/macOS**
-
 ```bash
+export GEMINI_API_KEY=your_key
 ./gradlew bootRun
 ```
 
-**Windows**
-
+**Windows (CMD)**
 ```bash
+set GEMINI_API_KEY=your_key
 gradlew.bat bootRun
 ```
 
 #### Frontend
-
+#### Install dependencies
 ```bash
 npm install
+```
+
+#### Run locally in development mode using the local backend API: http://localhost:8080/api/cv/upload:
+
+```bash
 ng serve
 ```
+The application starts at:
+http://localhost:4200
+
+
+#### Build and run the production version locally using the backend API deployed on Railway:
+
+```bash
+npm install -g serve
+ng build --configuration production
+serve -s dist/CV-Parser-Challenge-FE/browser
+```
+
+The application starts at:
+http://localhost:3000
+
 
 ## 🏗️ Architecture
 
